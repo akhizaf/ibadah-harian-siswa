@@ -8,37 +8,75 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
         .container {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
+            width: 320px;
+            animation: fadeIn 1s ease-in-out;
         }
-        input, select {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #2575fc;
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(37, 117, 252, 0.5);
         }
         button {
-            background-color: #4CAF50;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
+            font-size: 16px;
+            transition: 0.3s;
         }
         button:hover {
-            background-color: #45a049;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+        }
+        .dashboard {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #6a11cb;
+            color: white;
         }
     </style>
     <script>
@@ -64,7 +102,8 @@
                         timer: 2000,
                         showConfirmButton: false
                     }).then(() => {
-                        window.location.href = "dashboard.html";
+                        $(".container").hide();
+                        $(".dashboard").show();
                     });
                 } else {
                     Swal.fire("Login Gagal", "NISN atau password salah!", "error");
@@ -77,12 +116,27 @@
     <div class="container">
         <h2>Login Ibadah Harian Siswa</h2>
         <form id="loginForm">
-            <label for="nisn">NISN:</label>
             <input type="text" id="nisn" placeholder="Masukkan NISN" required><br>
-            <label for="password">Password:</label>
             <input type="password" id="password" placeholder="Masukkan Password" required><br>
             <button type="submit">Login</button>
         </form>
+    </div>
+    <div class="dashboard">
+        <h2>Rekap Ibadah Harian</h2>
+        <table>
+            <tr>
+                <th>Kegiatan</th>
+                <th>Poin</th>
+            </tr>
+            <tr><td>Shalat Subuh di Masjid</td><td>10</td></tr>
+            <tr><td>Shalat 5 Waktu Berjamaah</td><td>25</td></tr>
+            <tr><td>Shalat Dhuha</td><td>10</td></tr>
+            <tr><td>Shalat Tahajjud</td><td>15</td></tr>
+            <tr><td>Tilawah 2 Lembar</td><td>10</td></tr>
+            <tr><td>Membaca Buku</td><td>5</td></tr>
+            <tr><td>Olahraga 10 Menit</td><td>5</td></tr>
+            <tr><td>Birul Walidain</td><td>10</td></tr>
+        </table>
     </div>
 </body>
 </html>
